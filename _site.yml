@@ -8,7 +8,7 @@ navbar:
     - text: "About"
       href: about.html
     - text: "Proyects"
-      href: proyects.html
+      href: proyect.html
     - text: "C.V"
       href: cv.html
     - text: "Contact"
