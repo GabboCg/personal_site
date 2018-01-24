@@ -13,6 +13,8 @@ navbar:
       href: cv.html
     - text: "Contact"
       href: contact.html
+      
+  right:      
     - icon: fa-github
       href: https://github.com/GaboCg
     - icon: ion-social-twitter
