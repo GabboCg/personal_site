@@ -5,12 +5,14 @@ title: "Bienvenido...yI'el"
 ```{r,echo=FALSE}
 library(knitr)
 opts_knit$set(animation.fun = hook_scianimator)
+knitr::opts_chunk$set(echo = TRUE, fig.align="center")
 ```
 
 Hola mundo !!!
 
-![](Fargo.jpg)
-
+<p align="center">
+![](Fargo.jpg){width=50%}
+</p>
 
 $$Y = \alpha \cdot \sin(X), \alpha = 0,0.1,0.2,...,3$$
 

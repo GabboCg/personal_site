@@ -13,7 +13,18 @@ navbar:
       href: cv.html
     - text: "Contact"
       href: contact.html
+    - icon: fa-github
+      href: https://github.com/GaboCg
+    - icon: ion-social-twitter
+      href: https://www.twitter.com
+    - icon: ion-android-mail
+      href: https://www.gmail.com
+    - icon: ion-social-facebook
+      href: https://https://www.facebook.com
 output:
   html_document:
-    theme: sandstone
-    css: style.css
+    theme: cosmo
+   # css: style.css
+    highlight: textmate
+    include:
+      after_body: footer.html
