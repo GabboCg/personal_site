@@ -2,7 +2,7 @@ name: "Gabo-website"
 output_dir: "."
 navbar:
   title: "Gabriel Cabrera G."
-  right:
+  left:
     - text: "Home"
       href: index.html
     - text: "About"
