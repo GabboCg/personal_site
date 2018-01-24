@@ -1,9 +1,19 @@
 name: "Gabo-website"
 output_dir: "."
 navbar:
-  title: "Gabo`s Website"
-  left:
+  title: "Gabriel Cabrera G."
+  right:
     - text: "Home"
       href: index.html
-    - text: "About Me"
+    - text: "About"
       href: about.html
+    - text: "Proyects"
+      href: proyects.html
+    - text: "C.V"
+      href: cv.html
+    - text: "Contact"
+      href: contact.html
+output:
+  html_document:
+    theme: sandstone
+    css: style.css
