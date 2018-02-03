@@ -1,5 +1,5 @@
 ---
-title: "Sobre Mí"
+title: "Sobre MÃ­"
 ---
 
 Hola ... 
