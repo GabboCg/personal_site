@@ -1,6 +1,7 @@
 ---
 title: "¡Hola Mundo!"
 encoding: UTF-8
+background-image: url('https://wallpaperscraft.com/image/art_star_tree_sky_space_93472_1920x1080.jpg')
 ---
 
 <p style='text-align: justify;'>
@@ -8,8 +9,6 @@ encoding: UTF-8
 Aprender un lenguaje de programación es interesante y entretenido a la vez, más si te gusta trabajar con datos. Se tiende a caer en la (erronea) idea que la programación es sólo para aquellas personas con un *background* en informática o computación, no obstante, programar es una habilidad multidiciplinaria cuyo límites son tus ideas. 
 
 </p>
-
-
 
 > "Cualquier tecnología suficientemente avanzada es indistinguible de la magia." 
    - Arthur C. Clarke 

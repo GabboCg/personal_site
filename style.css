@@ -1,5 +1,6 @@
-img{
-  width: 400px;
-  display: block;
-  margin: 0 auto;
-}
+.top-section
+    height: 100vh
+    background-image: url(https://wallpaperscraft.com/image/purple_continuous_background_colorful_65843_1920x1080.jpg)
+    background-size: 100%
+    background-position: center bottom
+    background-repeat: no-repeat
