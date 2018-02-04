@@ -19,9 +19,6 @@ knitr::opts_chunk$set(echo = TRUE, fig.align="center")
 ```
 
 
-<p align="center">
-![](Fargo.jpg){width=50%}
-</p>
 
 $$Y = \alpha \cdot \sin(X), \alpha = 0,0.1,0.2,...,3$$
 
@@ -47,65 +44,89 @@ ggplot(results, aes(x = xs, y = ys, color = alpha)) +
   theme(legend.position="none")
 ```
 
-```{r Code Chunk, echo = FALSE, fig.align='center'}
+<p align="center">
+```{r, echo = FALSE, fig.align='center'}
 library(plotly)
 library(quantmod)
 
-getSymbols("AAPL",src='yahoo')
+# get data
+getSymbols("^GSPC",src='yahoo',auto.assign = TRUE, from = "2007-01-01")
+df <- data.frame(Date=index(GSPC),coredata(GSPC))
 
-df <- data.frame(Date=index(AAPL),coredata(AAPL))
-df <- tail(df, 30)
-df$ID <- seq.int(nrow(df))
+# create Bollinger Bands
+bbands <- BBands(GSPC[,c("GSPC.High","GSPC.Low","GSPC.Close")])
 
-accumulate_by <- function(dat, var) {
-  var <- lazyeval::f_eval(var, dat)
-  lvls <- plotly:::getLevels(var)
-  dats <- lapply(seq_along(lvls), function(x) {
-    cbind(dat[var %in% lvls[seq(1, x)], ], frame = lvls[[x]])
-  })
-  dplyr::bind_rows(dats)
+# join and subset data
+df <- subset(cbind(df, data.frame(bbands[,1:3])), Date >= "2015-01-01")
+
+# colors column for increasing and decreasing
+for (i in 1:length(df[,1])) {
+  if (df$GSPC.Close[i] >= df$GSPC.Open[i]) {
+    df$direction[i] = 'Aumento'
+  } else {
+    df$direction[i] = 'Disminución'
+  }
 }
 
-df <- df %>%
-  accumulate_by(~ID)
+i <- list(line = list(color = '#17BECF'))
+d <- list(line = list(color = '#7F7F7F'))
 
+# plot candlestick chart
 p <- df %>%
-  plot_ly(
-    x = ~ID, 
-    y = ~AAPL.Close, 
-    frame = ~frame,
-    type = 'scatter', 
-    mode = 'lines', 
-    fill = 'tozeroy', 
-    fillcolor='rgba(114, 186, 59, 0.5)',
-    line = list(color = 'rgb(114, 186, 59)'),
-    text = ~paste("Day: ", ID, "<br>Close: $", AAPL.Close), 
-    hoverinfo = 'text'
-  ) %>%
-  layout(
-    title = "AAPL: Last 30 days",
-    yaxis = list(
-      title = "Close", 
-      range = c(0,200), 
-      zeroline = F,
-      tickprefix = "$"
-    ),
-    xaxis = list(
-      title = "Day", 
-      range = c(0,30), 
-      zeroline = F, 
-      showgrid = F
-    )
-  ) %>% 
-  animation_opts(
-    frame = 100, 
-    transition = 0, 
-    redraw = FALSE
-  ) %>%
-  animation_slider(
-    currentvalue = list(
-      prefix = "Day "
-    )
-  )
+  plot_ly(x = ~Date, type="candlestick",
+          open = ~GSPC.Open, close = ~GSPC.Close,
+          high = ~GSPC.High, low = ~GSPC.Low, name = "GSPC",
+          increasing = i, decreasing = d) %>%
+  add_lines(x = ~Date, y = ~up , name = "B Bands",
+            line = list(color = '#ccc', width = 0.5),
+            legendgroup = "Bollinger Bands",
+            hoverinfo = "none", inherit = F) %>%
+  add_lines(x = ~Date, y = ~dn, name = "B Bands",
+            line = list(color = '#ccc', width = 0.5),
+            legendgroup = "Bollinger Bands", inherit = F,
+            showlegend = FALSE, hoverinfo = "none") %>%
+  add_lines(x = ~Date, y = ~mavg, name = "Mv Avg",
+            line = list(color = '#E377C2', width = 0.5),
+            hoverinfo = "none", inherit = F) %>%
+  layout(yaxis = list(title = "Price"))
 
+# plot volume bar chart
+pp <- df %>%
+  plot_ly(x=~Date, y=~GSPC.Volume, type='bar', name = "GSPC Volumen",
+          color = ~direction, colors = c('#17BECF','#7F7F7F')) %>%
+  layout(yaxis = list(title = "Volume"))
+
+# create rangeselector buttons
+rs <- list(visible = TRUE, x = 0.5, y = -0.055,
+           xanchor = 'center', yref = 'paper',
+           font = list(size = 9),
+           buttons = list(
+             list(count=1,
+                  label='RESET',
+                  step='all'),
+             list(count=1,
+                  label='1 YR',
+                  step='year',
+                  stepmode='backward'),
+             list(count=3,
+                  label='3 MO',
+                  step='month',
+                  stepmode='backward'),
+             list(count=1,
+                  label='1 MO',
+                  step='month',
+                  stepmode='backward')
+           ))
+
+# subplot with shared x axis
+p <- subplot(p, pp, heights = c(0.7,0.2), nrows=2,
+             shareX = TRUE, titleY = TRUE) %>%
+  layout(title = paste("S&P 500: 2015-01-01",Sys.Date()),
+         xaxis = list(rangeselector = rs),
+         legend = list(orientation = 'h', x = 0.5, y = 1,
+                       xanchor = 'center', yref = 'paper',
+                       font = list(size = 10),
+                       bgcolor = 'transparent'))
+p
 ```
+</p>

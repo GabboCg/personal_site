@@ -1,34 +1,33 @@
-name: Gabo-website
+name: "Gabo-website"
 encoding: UTF-8
-output_dir: '.'
+output_dir: "."
 navbar:
-  title: Gabriel Cabrera G.
+  title: "Gabriel Cabrera G."
   left:
-  - text: Home
-    href: index.html
-  - text: About
-    href: about.html
-  - text: Proyects
-    href: proyect.html
-  - text: C.V
-    href: cv.html
-  - text: Contact
-    href: contact.html
-  right:
-  - icon: fa-github
-    href: https://github.com/GaboCg
-  - icon: ion-social-twitter
-    href: https://www.twitter.com
-  - icon: ion-android-mail
-    href: https://www.gmail.com
-  - icon: ion-social-facebook
-    href: https://https://www.facebook.com
+    - text: "Home"
+      href: index.html
+    - text: "About"
+      href: about.html
+    - text: "Proyects"
+      href: proyect.html
+    - text: "C.V"
+      href: cv.html
+    - text: "Contact"
+      href: contact.html
+      
+  right:      
+    - icon: fa-github
+      href: https://github.com/GaboCg
+    - icon: ion-social-twitter
+      href: https://www.twitter.com
+    - icon: ion-android-mail
+      href: https://www.gmail.com
+    - icon: ion-social-facebook
+      href: https://https://www.facebook.com
 output:
   html_document:
     theme: cosmo
+   # css: style.css
     highlight: textmate
     include:
       after_body: footer.html
-    lib_dir: site_libs
-    self_contained: no
-
