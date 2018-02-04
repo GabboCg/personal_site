@@ -1,10 +1,11 @@
 ---
 title: "¡Hola Mundo!"
+encoding: UTF-8
 ---
 
 <p style='text-align: justify;'>
 
-Aprender un lenguaje de programación es interesante y entretenido a la vez, más si te gusta trabajar con datos. Se tiende a caer en la (erronea) idea que la programación es sólo para aquellas personas con un *background* en informática o programación, no obstante, programar es una habilidad multidiciplinaria cuyo límites son tus ideas. 
+Aprender un lenguaje de programación es interesante y entretenido a la vez, más si te gusta trabajar con datos. Se tiende a caer en la (erronea) idea que la programación es sólo para aquellas personas con un *background* en informática o computación, no obstante, programar es una habilidad multidiciplinaria cuyo límites son tus ideas. 
 
 </p>
 
@@ -69,7 +70,7 @@ for (i in 1:length(df[,1])) {
   if (df$GSPC.Close[i] >= df$GSPC.Open[i]) {
     df$direction[i] = 'Aumento'
   } else {
-    df$direction[i] = 'Disminución'
+    df$direction[i] = 'DisminuciÃ³n'
   }
 }
 
