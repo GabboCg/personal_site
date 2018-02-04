@@ -8,12 +8,18 @@ Aprender un lenguaje de programación es interesante y entretenido a la vez, má
 
 </p>
 
+
+
 > "Cualquier tecnología suficientemente avanzada es indistinguible de la magia." 
    - Arthur C. Clarke 
    
 La mayoría de los proyectos están construido usando R a través de la IDE Rstudio y pensados para replicarlos libremente. A continuación la gráfica de:
 
+
+
 $$Y = \alpha \cdot \sin(X), \alpha = 0,0.1,0.2,...,3$$
+
+
 
 Usando `ggplot2` existente en el `tidyverse`:
 
@@ -37,6 +43,8 @@ ggplot(results, aes(x = xs, y = ys, color = alpha)) +
   theme_bw() + 
   theme(legend.position="none")
 ```
+
+
 
 
 Pero no todo es `ggplot2`, acá un ejemplo aplicado a las finanzas usando `plotly`
@@ -128,7 +136,15 @@ p
 ```
 </div>
 
+
+
 y por que no un video ... 
 
-<iframe width="560" height="315" src="https://www.youtube.com/watch?v=uc6f_2nPSX8" frameborder="0" allowfullscreen></iframe>
+<div align="center">
+```{r, echo = FALSE, fig.align='center'}
+library("htmltools")
+library("vembedr")
 
+embed_url("https://www.youtube.com/watch?v=gIro5YYtteQ")
+```
+</div>

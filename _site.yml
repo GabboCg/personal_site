@@ -4,7 +4,7 @@ output_dir: "."
 navbar:
   title: "Gabriel Cabrera G."
   left:
-    - text: "Home"
+    - icon: fa-home
       href: index.html
     - text: "About"
       href: about.html
